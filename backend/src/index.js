@@ -17,10 +17,31 @@ const httpServer = createServer(app);
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+const normalizeOrigin = (value) => {
+    if (!value || typeof value !== "string") return value;
+    return value.replace(/\/+$/, "");
+};
+
+const allowedOrigins = [CLIENT_URL].filter(Boolean).map(normalizeOrigin);
+
+const corsOptions = {
+    origin: (origin, callback) => {
+        // Allow non-browser clients (curl, server-to-server) with no Origin header.
+        if (!origin) return callback(null, true);
+
+        const normalized = normalizeOrigin(origin);
+        if (allowedOrigins.includes(normalized)) return callback(null, true);
+
+        return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
+    credentials: true,
+    optionsSuccessStatus: 204,
+};
+
 const io = new Server(httpServer, {
     cors: {
-        origin: CLIENT_URL,
-        credentials: true
+        origin: allowedOrigins,
+        credentials: true,
     }
 })
 
@@ -30,10 +51,7 @@ handlePollSocket(io);
 
 app.use(cookieParser());
 app.use(cors(
-    {
-        origin: CLIENT_URL,
-        credentials: true,
-    }
+    corsOptions
 ))
 app.use(express.json())
 app.get("/ping", (_req, res) => {

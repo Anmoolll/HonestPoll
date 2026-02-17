@@ -21,6 +21,11 @@ import useUserStore from "../store/useStore";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale);
 
+const normalizeBaseUrl = (value) => {
+  if (!value || typeof value !== "string") return value;
+  return value.replace(/\/+$/, "");
+};
+
 function VotingPage() {
   const { pollId } = useParams();
   const user = useUserStore((state) => state.user);
@@ -33,7 +38,8 @@ function VotingPage() {
 
   useEffect(() => {
     // const s = io(`${import.meta.env.VITE_BACKEND_URL}`);
-    const s = io("http://localhost:3000");
+    const socketUrl = normalizeBaseUrl(import.meta.env.VITE_BACKEND_URL);
+    const s = io(socketUrl, { withCredentials: true });
     setSocket(s);
   
     s.on("connect", () => {
