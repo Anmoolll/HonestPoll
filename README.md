@@ -1,5 +1,4 @@
 <div align="center">
-    <img height="100px" src="./images/imageGIF.gif"/>
     <h1>HonestPoll - Live Polling Platform</h1>
 </div>
 
@@ -23,6 +22,9 @@ HonestPoll is an interactive web application designed to simplify the process of
 ### Home Page
 
 <img src="./images/Home.png"/>
+<img src="./images/Home2.png"/>
+<img src="./images/Home3.png"/>
+
 
 ### Polls Page
 
@@ -30,7 +32,7 @@ HonestPoll is an interactive web application designed to simplify the process of
 
 ### Login Page
 
-<img src="./images/Screenshot 2024-11-14 101710.png"/>
+<img src="./images/login.png"/>
 
 ### Signup Page
 
