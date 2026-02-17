@@ -87,8 +87,8 @@ API Communication: `Axios`
 1. Clone the Repository
 
    ```bash
-   git clone https://github.com/ManikMaity/LivePoll.git
-   cd LivePoll
+   git clone https://github.com/Anmoolll/HonestPoll.git
+   cd HonestPoll
    ```
 
 2. Backend Setup
@@ -157,11 +157,3 @@ API Communication: `Axios`
 - Navigate to the `frontend` directory and run `npm run dev` to start the development server.
 - Navigate to the `backend` directory and run `npm run dev` to start the server.
 - Open a browser and go to `http://localhost:5173` to access the application.
-
-## Future Improvements
-- Add a search feature to the poll page.
-- Add like feature to the poll.
-- sorting polls using created date and popularity.
-- Updated user.
-- User avatar.
-- Multiple question poll.
